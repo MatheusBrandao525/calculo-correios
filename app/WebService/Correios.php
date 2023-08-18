@@ -124,8 +124,7 @@ class Correios
         //FECHA A CONEXÃO DO CURL
         curl_close($curl);
 
-        echo '<pre>';
-        print_r($response);
-        echo '</pre>'; exit;
+        //RETORNA O XML INSTANCIADO
+        return strlen($response) ? simplexml_load_string($response) : null;
     }
 }
