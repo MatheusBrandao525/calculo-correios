@@ -6,7 +6,7 @@ use \App\Webservice\Correios;
 $objetoCorreios = new Correios();
 
 $codigoServico = Correios::SERVICO_PAC;
-$ceoOrigem = '76937000';
+$cepOrigem = '76937000';
 $cepDestino = '76932000';
 $peso = 1;
 $formato = Correios::FORMATO_CAIXA_PACOTE;
@@ -19,10 +19,22 @@ $valorDeclarado = 0;
 $avisoRecebimento = false;
 
 
-$frete = $objetoCorreios->calcularFrete($codigoServico,$ceoOrigem,$cepDestino,$peso,$formato,$comprimento,$altura,$largura,$diametro,$maoPropria,$valorDeclarado,$avisoRecebimento);
+$frete = $objetoCorreios->calcularFrete($codigoServico,$cepOrigem,$cepDestino,$peso,$formato,$comprimento,$altura,$largura,$diametro,$maoPropria,$valorDeclarado,$avisoRecebimento);
 
-echo '<pre>';
-print_r($frete);
-echo '</pre>';
+    //VERIFICA O RESULTADO
+    if(!$frete){
+        die('Problemas ao calcular o frete');
+    }
 
+
+    //VERIFICA O ERRO
+    if(strlen($frete->MsgErro)){
+        die('Erro: '.$resultado->MsgErro);
+    }
+
+    //IMPRIME OS DADOS DA CONSULTA
+    echo "CEP Origem: ".$cepOrigem."\n"; 
+    echo "CEP Destino: ".$cepDestino."\n"; 
+    echo "Valor: ".$frete->valor."\n"; 
+    echo "Prazo: ".$frete->PrazoEntrega."\n"; 
 ?>

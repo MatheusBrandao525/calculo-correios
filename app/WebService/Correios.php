@@ -94,9 +94,8 @@ class Correios
 
         $resultado = $this->get('/calculador/CalcPrecoPrazo.aspx?'.$query);
 
-        echo '<pre>';
-        print_r($resultado);
-        echo '</pre>'; exit;
+        //RETORNA OS DADOS DO FRETE CALCULADO
+        return $resultado ? $resultado->cServico : null;
     }
 
     /**
