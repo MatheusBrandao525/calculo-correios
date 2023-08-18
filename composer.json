@@ -1,0 +1,8 @@
+{
+    "name":"m.brandao/calculo-correios",
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/"
+        }
+    }
+}
